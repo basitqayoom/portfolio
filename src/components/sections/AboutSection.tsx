@@ -1,23 +1,44 @@
-
-import React from 'react';
-import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
-import { MapPin, Mail, Phone, Linkedin, Code } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Code, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 interface StatCardProps {
   value: string;
   label: string;
   className?: string;
 }
-const StatCard = ({
-  value,
-  label,
-  className
-}: StatCardProps) => <Card className={cn("border-none shadow-none glass-card", className)}>
-    <CardContent className="p-6">
-      <p className="text-3xl font-bold mb-1">{value}</p>
-      <p className="text-sm text-muted-foreground">{label}</p>
-    </CardContent>
-  </Card>;
+const StatCard = ({ value, label, className }: StatCardProps) => {
+  const [count, setCount] = useState(0);
+  const { ref, inView } = useInView({ triggerOnce: true });
+  const duration = 2000; // Animation duration in milliseconds
+  
+  useEffect(() => {
+    if (inView) {
+      let start = 0;
+      const end = parseInt(value.replace(/\D/g, '')) || 0;
+      if (start === end) return;
+
+      const incrementTime = Math.abs(Math.floor(duration / end));
+      const timer = setInterval(() => {
+        start += 1;
+        setCount(start);
+        if (start >= end) clearInterval(timer);
+      }, incrementTime);
+
+      return () => clearInterval(timer);
+    }
+  }, [inView, value]);
+
+  return (
+    <Card ref={ref} className={cn('border-none shadow-none glass-card', className,'hover:bg-zinc-900')}>
+      <CardContent className="p-6">
+        <p className="text-3xl font-bold mb-1">{inView ? count + (value.includes('%') ? '%' : '+') : '0'}</p>
+        <p className="text-sm text-muted-foreground">{label}</p>
+      </CardContent>
+    </Card>
+  );
+};
 const AboutSection = () => {
   return <section id="about" className="py-24 relative overflow-hidden">
       {/* Background decorative elements */}
