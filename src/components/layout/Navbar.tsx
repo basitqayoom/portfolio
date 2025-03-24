@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { useTheme } from '@/hooks/use-theme';
 import { Menu, Moon, Sun, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Downlaod from '../icons/download';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -76,7 +77,7 @@ const Navbar = () => {
             
             <Button asChild className="ml-4">
               <a href="https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                Resume
+              <Downlaod className={"text-white dark:text-black"}/>  View CV
               </a>
             </Button>
           </nav>
@@ -103,7 +104,7 @@ const Navbar = () => {
           
           <Button asChild className="mt-4 mx-4">
             <a href="https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)}>
-              Resume
+            <Downlaod className={"text-white dark:text-black"} /> View CV
             </a>
           </Button>
         </nav>

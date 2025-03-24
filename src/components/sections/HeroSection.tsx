@@ -1,8 +1,8 @@
 
-import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, FileText } from 'lucide-react';
 import { useTheme } from '@/hooks/use-theme';
+import { ArrowDown, FileText } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -108,7 +108,7 @@ const HeroSection = () => {
             <Button variant="secondary" size="lg" asChild className="hover-scale flex items-center gap-2">
               <a href="https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <FileText className="h-4 w-4" />
-                Resume
+                View CV
               </a>
             </Button>
           </div>
