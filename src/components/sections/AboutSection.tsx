@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
@@ -55,13 +56,13 @@ const AboutSection = () => {
                 </li>
                 <li className="flex items-start">
                   <Linkedin className="mr-3 h-6 w-6 text-primary/70 flex-shrink-0 mt-0.5" />
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  <a href="https://www.linkedin.com/in/bqc/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                     LinkedIn Profile
                   </a>
                 </li>
                 <li className="flex items-start">
                   <Code className="mr-3 h-6 w-6 text-primary/70 flex-shrink-0 mt-0.5" />
-                  <a href="https://leetcode.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  <a href="https://leetcode.com/u/basitqayoomchowdhary/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                     LeetCode Profile
                   </a>
                 </li>

@@ -119,13 +119,13 @@ const ContactSection = () => {
               
               <div className="flex flex-wrap gap-4">
                 <Button variant="outline" asChild>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  <a href="https://www.linkedin.com/in/bqc/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </Button>
                 <Button variant="outline" asChild>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a href="https://github.com/basitqayoom" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </Button>
                 <Button variant="outline" asChild>
-                  <a href="https://leetcode.com" target="_blank" rel="noopener noreferrer">LeetCode</a>
+                  <a href="https://leetcode.com/u/basitqayoomchowdhary/" target="_blank" rel="noopener noreferrer">LeetCode</a>
                 </Button>
               </div>
             </div>
