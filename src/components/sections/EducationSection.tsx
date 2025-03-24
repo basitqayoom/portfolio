@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { GraduationCap } from 'lucide-react';
-
 const EducationSection = () => {
-  return (
-    <section className="py-24">
+  return <section className="py-24">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Education</h2>
@@ -17,7 +14,7 @@ const EducationSection = () => {
         
         <div className="max-w-3xl mx-auto">
           <Card className="overflow-hidden border-none glass-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CardContent className="p-8">
+            <CardContent className="p-8 bg-zinc-900">
               <div className="flex flex-col md:flex-row gap-6 items-center">
                 <div className="flex-shrink-0">
                   <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
@@ -46,8 +43,6 @@ const EducationSection = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default EducationSection;

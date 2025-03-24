@@ -1,27 +1,24 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Mail, Phone, Linkedin, Code } from 'lucide-react';
-
 interface StatCardProps {
   value: string;
   label: string;
   className?: string;
 }
-
-const StatCard = ({ value, label, className }: StatCardProps) => (
-  <Card className={cn("border-none shadow-none glass-card", className)}>
+const StatCard = ({
+  value,
+  label,
+  className
+}: StatCardProps) => <Card className={cn("border-none shadow-none glass-card", className)}>
     <CardContent className="p-6">
       <p className="text-3xl font-bold mb-1">{value}</p>
       <p className="text-sm text-muted-foreground">{label}</p>
     </CardContent>
-  </Card>
-);
-
+  </Card>;
 const AboutSection = () => {
-  return (
-    <section id="about" className="py-24 relative overflow-hidden">
+  return <section id="about" className="py-24 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-primary/5 rounded-full blur-3xl"></div>
@@ -30,9 +27,7 @@ const AboutSection = () => {
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
           <div className="h-1 w-20 bg-primary/30 mx-auto mb-6 rounded-full"></div>
-          <p className="text-muted-foreground text-lg text-balance">
-            Full-Stack Engineer with 2 years of experience in building high-performance web applications.
-          </p>
+          <p className="text-muted-foreground text-lg text-balance">Software Development Engineer with 2 years of experience in building high-performance web applications.</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -85,8 +80,6 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
