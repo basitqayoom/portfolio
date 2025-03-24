@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { GraduationCap } from 'lucide-react';
 const EducationSection = () => {
@@ -14,7 +13,7 @@ const EducationSection = () => {
         
         <div className="max-w-3xl mx-auto">
           <Card className="overflow-hidden border-none glass-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <CardContent className="p-8 bg-zinc-900">
+            <CardContent className="p-8">
               <div className="flex flex-col md:flex-row gap-6 items-center">
                 <div className="flex-shrink-0">
                   <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">

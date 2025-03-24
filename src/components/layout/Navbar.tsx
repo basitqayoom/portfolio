@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/hooks/use-theme';
+import { Menu, Moon, Sun, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,7 +60,7 @@ const Navbar = () => {
             behavior: 'smooth'
           });
         }}>
-            <div className="w-10 h-10 rounded-full flex items-center justify-center text-primary-foreground mr-2 text-white bg-transparent">B.</div>
+            <div className="w-10 h-10 rounded-full flex items-center justify-center text-primary mr-2 dark:text-white bg-transparent">B.</div>
             
           </a>
           
