@@ -31,7 +31,7 @@ const AboutSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
           <div className="h-1 w-20 bg-primary/30 mx-auto mb-6 rounded-full"></div>
           <p className="text-muted-foreground text-lg text-balance">
-            Dynamic Full-Stack Engineer with 2 years of experience in building high-performance web applications.
+            Full-Stack Engineer with 2 years of experience in building high-performance web applications.
           </p>
         </div>
         
@@ -70,6 +70,14 @@ const AboutSection = () => {
                     LeetCode Profile
                   </a>
                 </li>
+              </ul>
+              
+              <h3 className="text-xl font-semibold mt-8 mb-4">Languages</h3>
+              <ul className="space-y-2">
+                <li>English</li>
+                <li>Hindi</li>
+                <li>Urdu</li>
+                <li>Kashmiri</li>
               </ul>
             </div>
           </div>

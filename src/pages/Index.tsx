@@ -11,7 +11,7 @@ import EducationSection from '@/components/sections/EducationSection';
 import ContactSection from '@/components/sections/ContactSection';
 
 const Index = () => {
-  // Smooth scroll implementation for anchor links
+  // Enhanced smooth scroll implementation for anchor links
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -23,6 +23,7 @@ const Index = () => {
         const element = document.getElementById(targetId);
         
         if (element) {
+          // Add some animation to the scroll
           window.scrollTo({
             top: element.offsetTop - 80, // Adjust for navbar height
             behavior: 'smooth'
@@ -36,6 +37,37 @@ const Index = () => {
     
     document.addEventListener('click', handleAnchorClick);
     return () => document.removeEventListener('click', handleAnchorClick);
+  }, []);
+  
+  // Intersection Observer for animations on scroll
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const handleIntersect = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slide-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+    
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    
+    // Target elements to observe (sections, headings, etc.)
+    const sections = document.querySelectorAll('section > div > div');
+    sections.forEach(section => {
+      if (!section.classList.contains('animate-slide-up')) {
+        section.classList.add('opacity-0');
+        observer.observe(section);
+      }
+    });
+    
+    return () => observer.disconnect();
   }, []);
   
   return (

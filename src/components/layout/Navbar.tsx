@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useTheme } from '@/hooks/use-theme';
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -16,6 +17,7 @@ const navItems = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +47,7 @@ const Navbar = () => {
       scrolled ? 'glass-card py-3' : 'bg-transparent py-5'
     )}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold text-gradient">BC</Link>
+        <Link to="/" className="text-2xl font-bold text-gradient">B</Link>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
@@ -58,17 +60,41 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-          <Button className="ml-2">Resume</Button>
+          <Button 
+            className="ml-2"
+            onClick={() => window.open('https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing', '_blank')}
+          >
+            Resume
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="ml-2" 
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </Button>
         </nav>
         
         {/* Mobile Navigation Toggle */}
-        <button 
-          className="md:hidden text-foreground"
-          onClick={toggleMobileMenu}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center space-x-2">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </Button>
+          <button 
+            className="text-foreground"
+            onClick={toggleMobileMenu}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
       
       {/* Mobile Navigation Menu */}
@@ -89,7 +115,15 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-          <Button className="mt-4">Resume</Button>
+          <Button 
+            className="mt-4"
+            onClick={() => {
+              window.open('https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing', '_blank');
+              closeMobileMenu();
+            }}
+          >
+            Resume
+          </Button>
         </div>
       </div>
     </header>

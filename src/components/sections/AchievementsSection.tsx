@@ -60,7 +60,7 @@ const AchievementsSection = () => {
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-background">
               <p className="text-lg">
-                <span className="text-primary font-medium">Model UN Organizer</span> – Led a 200+ participant event, enhancing collaboration and leadership skills.
+                <span className="text-primary font-medium">Model UN Organizer</span> – Led a 200+ participant event, enhancing collaboration and leadership skills. Won Best Speaker Award.
               </p>
             </div>
             <div className="p-4 rounded-lg bg-background">
@@ -76,6 +76,11 @@ const AchievementsSection = () => {
             <div className="p-4 rounded-lg bg-background">
               <p className="text-lg">
                 <span className="text-primary font-medium">Award Nomination</span> – Nominated for Champion of the Quarter at Physics Wallah for outstanding contributions.
+              </p>
+            </div>
+            <div className="p-4 rounded-lg bg-background">
+              <p className="text-lg">
+                <span className="text-primary font-medium">Academic Presentation</span> – Presented a talk & presentation at SKUAST Srinagar (in collaboration with IIT BHU, PARUL University, NIT Srinagar, SKUAST).
               </p>
             </div>
           </div>
