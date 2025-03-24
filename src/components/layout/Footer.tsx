@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { Github, Linkedin, Mail, Code } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <p className="text-lg font-semibold text-gradient">Basit Chowdhary</p>
+            <p className="text-lg font-semibold text-gradient">Basit Qayoom Chowdhary</p>
             <p className="text-sm text-muted-foreground mt-1">Software Development Engineer</p>
           </div>
           
@@ -25,7 +24,7 @@ const Footer = () => {
           </div>
           
           <div className="text-sm text-muted-foreground">
-            © {currentYear} Basit Qayoom Chowdhary. All rights reserved.
+            © {currentYear} Basit Qayoom Chowdhary <br />All rights reserved
           </div>
         </div>
       </div>
