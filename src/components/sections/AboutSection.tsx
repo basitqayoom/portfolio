@@ -71,14 +71,6 @@ const AboutSection = () => {
                   </a>
                 </li>
               </ul>
-              
-              <h3 className="text-xl font-semibold mt-8 mb-4">Languages</h3>
-              <ul className="space-y-2">
-                <li>English</li>
-                <li>Hindi</li>
-                <li>Urdu</li>
-                <li>Kashmiri</li>
-              </ul>
             </div>
           </div>
           

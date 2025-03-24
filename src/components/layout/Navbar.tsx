@@ -1,130 +1,160 @@
 
-import React, { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
-import { Button } from "@/components/ui/button";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/hooks/use-theme';
 
-const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
-];
-
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-
+  
+  // Handle scrolling effect
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
+      setIsScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isMobileMenuOpen && !target.closest('#mobile-menu') && !target.closest('#menu-toggle')) {
+        setIsMobileMenuOpen(false);
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrolled]);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-  };
-
+    
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMobileMenuOpen]);
+  
+  const navItems = [
+    { name: 'Home', href: '#' },
+    { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Achievements', href: '#achievements' },
+    { name: 'Contact', href: '#contact' },
+  ];
+  
   return (
-    <header className={cn(
-      'fixed top-0 w-full z-50 transition-all duration-300',
-      scrolled ? 'glass-card py-3' : 'bg-transparent py-5'
-    )}>
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold text-gradient">B</Link>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
-          {navItems.map((item, index) => (
-            <a
-              key={index}
-              href={item.href}
-              className="px-4 py-2 rounded-md text-foreground/80 hover:text-foreground transition-colors"
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'py-3 backdrop-blur-lg bg-background/80 shadow-sm' : 'py-5 bg-transparent'
+      }`}
+    >
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <a 
+            href="#" 
+            className="text-2xl font-bold relative z-10 flex items-center"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground mr-2">
+              B
+            </div>
+            <span className="hidden md:inline">Basit</span>
+          </a>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
+            {navItems.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                className="px-4 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+            
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="ml-2"
+              aria-label="Toggle theme"
             >
-              {item.label}
-            </a>
-          ))}
-          <Button 
-            className="ml-2"
-            onClick={() => window.open('https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing', '_blank')}
-          >
-            Resume
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="ml-2" 
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </Button>
-        </nav>
-        
-        {/* Mobile Navigation Toggle */}
-        <div className="md:hidden flex items-center space-x-2">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </Button>
-          <button 
-            className="text-foreground"
-            onClick={toggleMobileMenu}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+            
+            <Button asChild className="ml-4">
+              <a 
+                href="https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Resume
+              </a>
+            </Button>
+          </nav>
+          
+          {/* Mobile Menu Toggle */}
+          <div className="flex items-center md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="mr-2"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+            
+            <Button
+              id="menu-toggle"
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
       </div>
       
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Menu */}
       <div
-        className={cn(
-          'fixed inset-0 bg-background/95 backdrop-blur-sm z-40 md:hidden transition-all duration-300 ease-in-out',
-          mobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'
-        )}
+        id="mobile-menu"
+        className={`md:hidden fixed top-0 right-0 h-screen w-64 bg-background shadow-xl transform transition-transform ease-in-out duration-300 pt-16 ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 p-4">
+        <nav className="flex flex-col p-4">
           {navItems.map((item, index) => (
             <a
               key={index}
               href={item.href}
-              className="text-xl font-medium text-foreground/80 hover:text-foreground transition-colors"
-              onClick={closeMobileMenu}
+              className="px-4 py-3 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              {item.label}
+              {item.name}
             </a>
           ))}
+          
           <Button 
-            className="mt-4"
-            onClick={() => {
-              window.open('https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing', '_blank');
-              closeMobileMenu();
-            }}
+            asChild 
+            className="mt-4 mx-4"
           >
-            Resume
+            <a 
+              href="https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Resume
+            </a>
           </Button>
-        </div>
+        </nav>
       </div>
     </header>
   );

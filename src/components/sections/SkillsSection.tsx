@@ -97,13 +97,12 @@ const SkillsSection = () => {
           <h3 className="text-2xl font-semibold mb-4 mt-12">Language Proficiency</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              { name: "English", flag: "🇬🇧" },
-              { name: "Hindi", flag: "🇮🇳" },
-              { name: "Urdu", flag: "🇺🇿" },
-              { name: "Kashmiri", flag: "" }
+              { name: "English" },
+              { name: "Hindi" },
+              { name: "Urdu" },
+              { name: "Kashmiri" }
             ].map((language, index) => (
-              <Badge key={index} variant="secondary" className="px-4 py-2 text-base">
-                {language.flag && <span className="mr-2">{language.flag}</span>}
+              <Badge key={index} variant="secondary" className="px-4 py-2 text-base hover:bg-primary/10 transition-all duration-300 hover:scale-105">
                 {language.name}
               </Badge>
             ))}

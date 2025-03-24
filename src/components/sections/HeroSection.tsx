@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, FileText } from 'lucide-react';
 import { useTheme } from '@/hooks/use-theme';
 
 const HeroSection = () => {
@@ -87,7 +87,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           <span className="text-sm md:text-base tracking-wider text-muted-foreground mb-4 opacity-0 animate-slide-up animation-delay-100">
-            FULL-STACK ENGINEER
+            SOFTWARE DEVELOPMENT ENGINEER
           </span>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 opacity-0 animate-slide-up animation-delay-200">
@@ -104,6 +104,12 @@ const HeroSection = () => {
             </Button>
             <Button variant="outline" size="lg" asChild className="hover-scale">
               <a href="#contact">Get in Touch</a>
+            </Button>
+            <Button variant="secondary" size="lg" asChild className="hover-scale flex items-center gap-2">
+              <a href="https://docs.google.com/document/d/1wXG0wm7eX2jzkcDlH5E8hlWaWhBAXaq-uCWYVlUXZVk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <FileText className="h-4 w-4" />
+                Resume
+              </a>
             </Button>
           </div>
         </div>

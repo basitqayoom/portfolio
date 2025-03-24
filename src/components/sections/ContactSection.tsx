@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -14,6 +14,32 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slide-up');
+            entry.target.classList.remove('opacity-0');
+            // Once animation is done, unobserve the element
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    // Get all the elements to animate
+    const elementsToAnimate = sectionRef.current?.querySelectorAll('.animated-element');
+    elementsToAnimate?.forEach((element) => {
+      element.classList.add('opacity-0');
+      observer.observe(element);
+    });
+    
+    return () => observer.disconnect();
+  }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -40,9 +66,9 @@ const ContactSection = () => {
   };
   
   return (
-    <section id="contact" className="py-24 bg-secondary/50">
+    <section id="contact" className="py-24 bg-secondary/50" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-3xl mx-auto mb-16 text-center">
+        <div className="max-w-3xl mx-auto mb-16 text-center animated-element">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
           <div className="h-1 w-20 bg-primary/30 mx-auto mb-6 rounded-full"></div>
           <p className="text-muted-foreground text-lg text-balance">
@@ -51,7 +77,7 @@ const ContactSection = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="space-y-8">
+          <div className="space-y-8 animated-element" style={{ transitionDelay: '100ms' }}>
             <h3 className="text-2xl font-semibold">Contact Information</h3>
             
             <div className="space-y-4">
@@ -105,7 +131,7 @@ const ContactSection = () => {
             </div>
           </div>
           
-          <div className="glass-card rounded-2xl p-8">
+          <div className="glass-card rounded-2xl p-8 animated-element" style={{ transitionDelay: '200ms' }}>
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
