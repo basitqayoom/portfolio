@@ -34,7 +34,7 @@ const EducationSection = () => {
                     </div>
                     <div className="bg-background/50 p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-1">Additional Qualification</p>
-                      <p className="text-xl font-medium">GATE 2025 Qualified in Data Science</p>
+                      <p className="font-medium text-base text-left">GATE 2025 Qualified in Data Science &amp; AI</p>
                     </div>
                   </div>
                 </div>
