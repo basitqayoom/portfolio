@@ -1,7 +1,6 @@
 
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface SkillCategory {
   name: string;
@@ -13,7 +12,7 @@ const skillCategories: SkillCategory[] = [
     name: "Frontend",
     skills: [
       "HTML", "CSS", "JavaScript (ES6+)", "ReactJS", "Next.js", "TypeScript", 
-      "Redux", "Tailwind CSS", "Storybook", "Micro-Frontend (Module Federation)"
+      "Redux", "Tailwind CSS", "Storybook", "Micro-Frontend (Module Federation)","Tanstack React Query"
     ]
   },
   {
@@ -26,7 +25,7 @@ const skillCategories: SkillCategory[] = [
     name: "DevOps & Tools",
     skills: [
       "Git", "GitHub", "GitLab", "Jenkins", "Docker", "CI/CD", 
-      "Webpack", "Vite", "Google Cloud"
+      "Webpack", "Vite", "Google Cloud", "RsBuild"
     ]
   },
   {
@@ -38,7 +37,7 @@ const skillCategories: SkillCategory[] = [
   {
     name: "Programming Languages",
     skills: [
-      "C", "C++", "Python", "Data Structures & Algorithms", "Object-Oriented Programming"
+      "C", "C++", "Python", "Data Structures & Algorithms", "Object-Oriented Programming","Go Lang"
     ]
   },
   {
